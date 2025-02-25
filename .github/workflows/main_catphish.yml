@@ -1,13 +1,12 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy container app to Azure Web App - catphish
+name: Build and deploy container app to Azure Web App
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -30,7 +29,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a814f34faa3c498f9443704c9ccba1c5 }}/catphish:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a814f34faa3c498f9443704c9ccba1c5 }}/${{ secrets.DOCKER_IMAGE }}:front
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +47,4 @@ jobs:
         app-name: 'catphish'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_d3e4ad1181964b28b160ea83a08094bd }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a814f34faa3c498f9443704c9ccba1c5 }}/catphish:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_a814f34faa3c498f9443704c9ccba1c5 }}/${{ secrets.DOCKER_IMAGE }}:front'
