@@ -15,6 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: npm install, and build
+      run: |
+        npm install
+        npm run build
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
@@ -28,6 +33,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
+        context: .
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_d4b2b10559ce43228bcd08935183545a }}/${{ secrets.DOCKER_IMAGE }}:front
         file: ./Dockerfile
