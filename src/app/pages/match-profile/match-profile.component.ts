@@ -39,10 +39,10 @@ export class MatchProfileComponent implements OnInit {
         this.loadChat();
 
       } else if (choice === "Unmatch") {
-        window.open("/matches/" + this.username, "_self");
+        this.router.navigate(["/matches", this.username]);
 
       } else if (choice === "Delete") {
-        window.open("/matches/" + this.username, "_self");
+        this.router.navigate(["/matches", this.username]);
       }
     });
 
@@ -139,26 +139,26 @@ export class MatchProfileComponent implements OnInit {
     }
 
     this.stomp.send("/" + this.matchname, {}, JSON.stringify(webSocketMessage));
-    window.open("/matches/" + this.username, "_self");
+    this.router.navigate(["/matches", this.username]);
   }
 
   enterProfile() : void {
-    window.open("/profile/" + this.username, "_self");
+    this.router.navigate(["/profile", this.username]);
   }
 
   enterMatch() : void {
-    window.open("/match/" + this.username, "_self");
+    this.router.navigate(["/match", this.username]);
   }
 
   enterMatches() : void {
-    window.open("/matches/" + this.username, "_self");
+    this.router.navigate(["/matches", this.username]);
   }
 
   enterMain() : void {
-    window.open("/", "_self");
+    this.router.navigate(["/"]);
   }
 
   enterDelete() : void {
-    window.open("/delete/" + this.username, "_self");
+    this.router.navigate(["/delete", this.username]);
   }
 }
