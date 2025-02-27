@@ -26,10 +26,10 @@ export class MatchesComponent implements OnInit {
       let choice = JSON.parse(frame.body).choice;
 
       if (choice === "Unmatch") {
-        window.location.reload();
+        this.router.navigate(["/matches", this.username]);
 
       } else if (choice === "Delete") {
-        window.location.reload();
+        this.router.navigate(["/matches", this.username]);
       }
     });
 
@@ -72,7 +72,7 @@ export class MatchesComponent implements OnInit {
           p.style.color = "white";
           
           img.addEventListener("click", () : void => {
-            window.open("/match-profile/" + this.username + "/" + response[i].username, "_self");
+            this.router.navigate(["/match-profile", this.username + "/" + response[i].username]);
           });
         }
       }
@@ -80,11 +80,11 @@ export class MatchesComponent implements OnInit {
   }
 
   enterProfile() : void {
-    window.open("/profile/" + this.username, "_self");
+    this.router.navigate(["/profile", this.username]);
   }
 
   enterMatch() : void {
-    window.open("/match/" + this.username, "_self");
+    this.router.navigate(["/match", this.username]);
   }
 
   reload() : void {
@@ -92,10 +92,10 @@ export class MatchesComponent implements OnInit {
   }
 
   enterMain() : void {
-    window.open("/", "_self");
+    this.router.navigate(["/"]);
   }
 
   enterDelete() : void {
-    window.open("/delete/" + this.username, "_self");
+    this.router.navigate(["/delete", this.username]);
   }
 }
