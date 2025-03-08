@@ -26,10 +26,10 @@ export class MatchesComponent implements OnInit {
       let choice = JSON.parse(frame.body).choice;
 
       if (choice === "Unmatch") {
-        this.router.navigate(["/matches", this.username]);
+        window.open("/#/matches/" + this.username, "_self");
 
       } else if (choice === "Delete") {
-        this.router.navigate(["/matches", this.username]);
+        window.open("/#/matches/" + this.username, "_self");
       }
     });
 
@@ -80,11 +80,11 @@ export class MatchesComponent implements OnInit {
   }
 
   enterProfile() : void {
-    this.router.navigate(["/profile", this.username]);
+    window.open("/#/profile/" + this.username, "_self");
   }
 
   enterMatch() : void {
-    this.router.navigate(["/match", this.username]);
+    window.open("/#/match/" + this.username, "_self");
   }
 
   reload() : void {
@@ -92,10 +92,10 @@ export class MatchesComponent implements OnInit {
   }
 
   enterMain() : void {
-    this.router.navigate(["/"]);
+    window.open("/#/", "_self");
   }
 
   enterDelete() : void {
-    this.router.navigate(["/delete", this.username]);
+    window.open("/#/delete/" + this.username, "_self");
   }
 }

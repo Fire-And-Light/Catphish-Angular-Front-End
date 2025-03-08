@@ -79,6 +79,10 @@ export class ProfileComponent implements OnInit {
       this.saved.innerHTML = "";
   }
 
+  enterMatches() : void {
+    window.open("/#/matches/" + this.username, "_self");
+  }
+
   reload() : void {
     window.location.reload();
   }

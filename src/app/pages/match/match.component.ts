@@ -169,7 +169,7 @@ export class MatchComponent implements OnInit {
 
   enterMatches() : void {
     if (this.canClick) {
-      this.router.navigate(["/matches", this.username]);
+      window.open("/#/matches/" + this.username, "_self");
     }
   }
 

@@ -36,13 +36,14 @@ export class MatchProfileComponent implements OnInit {
       let choice = JSON.parse(frame.body).choice;
 
       if (choice === "Message") {
-        this.loadChat();
+        let message = JSON.parse(frame.body).message;
+        this.updateChat(message.message);
 
       } else if (choice === "Unmatch") {
-        this.router.navigate(["/matches", this.username]);
+        window.open("/#/matches/" + this.username, "_self");
 
       } else if (choice === "Delete") {
-        this.router.navigate(["/matches", this.username]);
+        window.open("/#/matches/" + this.username, "_self");
       }
     });
 
@@ -88,6 +89,23 @@ export class MatchProfileComponent implements OnInit {
         this.chat.scrollTop = this.chat.scrollHeight - this.chat.clientHeight;
       }
     });
+  }
+
+  updateChat(message : any) : void {
+    let p = document.createElement("p");
+    p.innerHTML = message;
+
+    p.style.padding = "10px";
+    p.style.color = "white";
+    p.style.width = "fit-content";
+    p.style.borderRadius = "10px";
+    p.style.marginBottom = "15px";
+    p.style.wordBreak = "break-word";
+    p.style.maxWidth = "230px";
+    p.style.backgroundColor = "rgb(54, 53, 53)";
+
+    this.chat.appendChild(p);
+    this.chat.scrollTop = this.chat.scrollHeight - this.chat.clientHeight;
   }
 
   sendMessage() : void {
@@ -139,26 +157,26 @@ export class MatchProfileComponent implements OnInit {
     }
 
     this.stomp.send("/" + this.matchname, {}, JSON.stringify(webSocketMessage));
-    this.router.navigate(["/matches", this.username]);
+    window.open("/#/matches/" + this.username, "_self");
   }
 
   enterProfile() : void {
-    this.router.navigate(["/profile", this.username]);
+    window.open("/#/profile/" + this.username, "_self");
   }
 
   enterMatch() : void {
-    this.router.navigate(["/match", this.username]);
+    window.open("/#/match/" + this.username, "_self");
   }
 
   enterMatches() : void {
-    this.router.navigate(["/matches", this.username]);
+    window.open("/#/matches/" + this.username, "_self");
   }
 
   enterMain() : void {
-    this.router.navigate(["/"]);
+    window.open("/#/", "_self");
   }
 
   enterDelete() : void {
-    this.router.navigate(["/delete", this.username]);
+    window.open("/#/delete/" + this.username, "_self");
   }
 }
