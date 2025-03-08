@@ -72,7 +72,7 @@ export class MatchesComponent implements OnInit {
           p.style.color = "white";
           
           img.addEventListener("click", () : void => {
-            this.router.navigate(["/match-profile", this.username + "/" + response[i].username]);
+            window.open("/match-profile/" + this.username + "/" + response[i].username, "_self");
           });
         }
       }
