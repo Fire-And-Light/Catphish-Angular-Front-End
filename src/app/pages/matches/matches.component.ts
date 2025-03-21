@@ -26,10 +26,10 @@ export class MatchesComponent implements OnInit {
       let choice = JSON.parse(frame.body).choice;
 
       if (choice === "Unmatch") {
-        window.open("/#/matches/" + this.username, "_self");
+        window.location.reload();
 
       } else if (choice === "Delete") {
-        window.open("/#/matches/" + this.username, "_self");
+        window.location.reload();
       }
     });
 
